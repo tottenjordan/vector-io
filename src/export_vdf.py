@@ -133,7 +133,7 @@ def export_vertexai_vectorsearch(args):
     set_arg_from_input(
         args,
         "index",
-        "Enter name of index to export (hit return to export all. Comma separated for multiple indexes): ",
+        "Enter name of index to export; comma separated for multiple indexes (leave blank to export all): ",
     )
     set_arg_from_input(
         args,
@@ -144,7 +144,7 @@ def export_vertexai_vectorsearch(args):
     set_arg_from_input(
         args,
         "max_vectors",
-        "Optional: max_vectors to export; can be larger than actual vector count",
+        "Optional: max_vectors to export; can be larger than actual vector count: ",
     )
     vertexai_vectorsearch_export = ExportVertexAIVectorSearch(args)
     vertexai_vectorsearch_export.get_data()

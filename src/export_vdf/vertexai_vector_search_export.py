@@ -119,7 +119,8 @@ class ExportVertexAIVectorSearch(ExportVDB):
         index_metas = {}
         for index_name in tqdm(index_names, desc="Fetching indexes"):
             index_meta = self.get_data_for_index(index_name)
-            index_metas[index_name] = index_meta
+            # index_metas[index_name] = index_meta
+            index_metas[index_meta[0]["index_name"]] = index_meta
 
         # Create and save internal metadata JSON
         self.file_structure.append(os.path.join(self.vdf_directory, "VDF_META.json"))
@@ -215,7 +216,7 @@ class ExportVertexAIVectorSearch(ExportVDB):
 
         namespace_meta = {
             "index_name": index.display_name,
-            "namespace": "namespace",
+            "namespace": self.args.get("namespace", ""),
             "total_vector_count": total,
             "exported_vector_count": num_vectors_exported,
             "metric": standardize_metric(
@@ -227,7 +228,7 @@ class ExportVertexAIVectorSearch(ExportVDB):
             "dimensions": dim,
             "model_name": self.args["model_name"],
             "vector_columns": ["vector"],
-            "data_path": vectors_directory,
+            "data_path": index.display_name, # vectors_directory
         }
         index_meta_list.append(namespace_meta)
 
