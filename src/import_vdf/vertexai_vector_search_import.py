@@ -82,11 +82,15 @@ class ImportVertexAIVectorSearch(ImportVDF):
         # filters: restricts and crowding
         # =========================================================
         if self.args["filter_restricts"]:
+            if isinstance(self.args["filter_restricts"], str):
+                self.filter_restricts = json.loads(self.args["filter_restricts"])
+            else:
+                self.filter_restricts = self.args["filter_restricts"]
             # String filters: allows and denies
             allows = []
             denies = []
             list_restrict_entries = []
-            for name in self.args["filter_restricts"]:
+            for name in self.filter_restricts:
                 name_space_filter_entry = {}
                 all_allows = []
                 all_denies = []
@@ -117,9 +121,13 @@ class ImportVertexAIVectorSearch(ImportVDF):
         print(f"list_restrict_entries : {self.list_restrict_entries}")
 
         if self.args["numeric_restricts"]:
+            if isinstance(self.args["numeric_restricts"], str):
+                self.numeric_restricts = json.loads(self.args["numeric_restricts"])
+            else:
+                self.numeric_restricts = self.args["numeric_restricts"]
             # Numeric filters:
             list_of_numeric_entries = []
-            for name in self.args["numeric_restricts"]:
+            for name in self.numeric_restricts:
                 name_space_filter_entry = {}
                 name_space_filter_entry["namespace"] = name.get("namespace")
                 name_space_filter_entry["data_type"] = name.get("data_type")

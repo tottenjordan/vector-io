@@ -131,10 +131,12 @@ def import_vertexai_vectorsearch(args):
         "Optional. Enter list of dicts describing string filters for each data point: ",
     )
     set_arg_from_input(
-        args, "numeric_restricts", "Optional. Enter list of dicts for each datapoint: "
+        args, 
+        "numeric_restricts", 
+        "Optional. Enter list of dicts describing numeric filters for each data point: "
     )
     set_arg_from_input(
-        args, "crowding_tag", "Optional. CrowdingTag of the datapoint: ", type_name=str
+        args, "crowding_tag", "Optional. CrowdingTag (str) of the datapoint: ", type_name=str
     )
     if args["create_new"] is True:
         set_arg_from_input(
