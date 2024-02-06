@@ -845,7 +845,7 @@ class ImportVertexAIVectorSearch(ImportVDF):
                             insert_datapoints_payload = []
 
                         if len(total_ids) % CALLS_PER_PRD == 0:
-                            print(f"{len(total_ids)} total vectors upserted")
+                            tqdm.write(f"{len(total_ids)} total vectors upserted")
 
                     if len(insert_datapoints_payload) > 0:
                         upsert_request = aipv1.UpsertDatapointsRequest(

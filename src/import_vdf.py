@@ -299,7 +299,7 @@ def main():
     parser_vertexai_vectorsearch.add_argument(
         "-b",
         "--batch-size",
-        type=str,
+        type=int,
         help="Enter size of upsert batches:",
         default=100,
     )
